@@ -1,0 +1,45 @@
+# Copyright (C) 2012 The Android Open Source Project
+#
+# IMPORTANT: Do not create world writable files or directories.
+# This is a common source of Android security bugs.
+#
+
+on charger
+    write /sys/devices/system/cpu/cpu2/online 0
+    write /sys/devices/system/cpu/cpu3/online 0
+
+# Set this property so surfaceflinger is not started by system_init
+    setprop system_init.startsurfaceflinger 0
+    setprop sys.ipo.tbl 1
+    # start kpoc_charger
+    start console
+    # start nvram_daemon
+    setprop debug.battery_lifetime.off_chg 1
+    start bat_logging
+    # start hotplug
+    setprop debug.mdump 1
+
+service kpoc_charger /system/bin/kpoc_charger
+    user root
+    group root
+    class charger
+
+#monitor battery status
+service bat_logging /system/bin/battery_lifetime_data
+    class main
+    user system
+    group system graphics
+
+on property:debug.mdump=1 && property:ro.boot.mdump=1 && property:ro.debuggable=1
+    write /proc/bootprof "INIT:eMMC:Mount_START"
+    # This should work for both encrypted/uncrypted data partition
+    mount_all /fstab.mt8163
+    write /proc/bootprof "INIT:eMMC:Mount_END"
+    start dump-ramdump
+
+#ramdump handling service
+service dump-ramdump /system/bin/dump-ramdump.sh
+    disabled
+    user root
+    group root
+    oneshot

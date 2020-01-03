@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     tablet_local_backup_transport.xml
+
+     Copyright (c) 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+     PROPRIETARY/CONFIDENTIAL
+
+     Use is subject to license terms.
+-->
+
+<permissions>
+    <!-- Whitelist of what components are permitted as backup data transports.  The
+         'service' attribute here is a flattened ComponentName string. -->
+    <!-- This should be discarded for Oreo as it is present in framework-sysconfig -->
+    <backup-transport-whitelisted-service service="android/com.android.internal.backup.LocalTransportService" />
+</permissions>

@@ -1,0 +1,100 @@
+#!/system/bin/sh
+
+if [ "$USER_ID" != 0 ]; then
+    echo "This script must be run as root"
+    exit 1
+fi
+
+SYS_PROP_HOST="persist.amazon.scl.host"
+SYS_PROP_PORT="persist.amazon.scl.port"
+
+SYS_PROP_DCF_HOST="persist.amazon.dcf.host"
+SYS_PROP_DCF_PORT="persist.amazon.dcf.port"
+
+ALPHA="alpha"
+BETA="beta"
+GAMMA="gamma"
+PRE_RELEASE="pre-release"
+PRE_PROD="pre-prod"
+PROD="prod"
+
+ALPHA_HOST="avs-proxy-alpha.integ.amazon.com"
+ALPHA_PORT="443"
+
+ALPHA_DCF_HOST="api-amazonalexa.integ.amazon.com"
+ALPHA_DCF_PORT="443"
+
+BETA_HOST="avs-proxy.integ.amazon.com"
+BETA_PORT="443"
+
+BETA_DCF_HOST="api-amazonalexa.integ.amazon.com"
+BETA_DCF_PORT="443"
+
+GAMMA_HOST="polaron.amazon.com"
+GAMMA_PORT="443"
+
+GAMMA_DCF_HOST="hypernova.amazonalexa.com"
+GAMMA_DCF_PORT="443"
+
+PRE_RELEASE_HOST="corbomite-na.amazon.com"
+PRE_RELEASE_PORT="443"
+
+PRE_RELEASE_DCF_HOST="api.amazonalexa.com"
+PRE_RELEASE_DCF_PORT="443"
+
+PRE_PROD_HOST="tetryon.amazon.com"
+PRE_PROD_PORT="443"
+
+PRE_PROD_DCF_HOST="api.amazonalexa.com"
+PRE_PROD_DCF_PORT="443"
+
+PROD_HOST="latinum.amazon.com"
+PROD_PORT="443"
+
+PROD_DCF_HOST="api.amazonalexa.com"
+PROD_DCF_PORT="443"
+
+stage=$1
+
+case "$1" in
+    $ALPHA)
+        setprop $SYS_PROP_HOST $ALPHA_HOST
+        setprop $SYS_PROP_PORT $ALPHA_PORT
+        setprop $SYS_PROP_DCF_HOST $ALPHA_DCF_HOST
+        setprop $SYS_PROP_DCF_PORT $ALPHA_DCF_PORT
+        ;;
+    $BETA)
+        setprop $SYS_PROP_HOST $BETA_HOST
+        setprop $SYS_PROP_PORT $BETA_PORT
+        setprop $SYS_PROP_DCF_HOST $BETA_DCF_HOST
+        setprop $SYS_PROP_DCF_PORT $BETA_DCF_PORT
+        ;;
+    $GAMMA)
+        setprop $SYS_PROP_HOST $GAMMA_HOST
+        setprop $SYS_PROP_PORT $GAMMA_PORT
+        setprop $SYS_PROP_DCF_HOST $GAMMA_DCF_HOST
+        setprop $SYS_PROP_DCF_PORT $GAMMA_DCF_PORT
+        ;;
+    $PRE_RELEASE)
+        setprop $SYS_PROP_HOST $PRE_RELEASE_HOST
+        setprop $SYS_PROP_PORT $PRE_RELEASE_PORT
+        setprop $SYS_PROP_DCF_HOST $PRE_RELEASE_DCF_HOST
+        setprop $SYS_PROP_DCF_PORT $PRE_RELEASE_DCF_PORT
+        ;;
+    $PRE_PROD)
+        setprop $SYS_PROP_HOST $PRE_PROD_HOST
+        setprop $SYS_PROP_PORT $PRE_PROD_PORT
+        setprop $SYS_PROP_DCF_HOST $PRE_PROD_DCF_HOST
+        setprop $SYS_PROP_DCF_PORT $PRE_PROD_DCF_PORT
+        ;;
+    $PROD)
+        setprop $SYS_PROP_HOST $PROD_HOST
+        setprop $SYS_PROP_PORT $PROD_PORT
+        setprop $SYS_PROP_DCF_HOST $PROD_DCF_HOST
+        setprop $SYS_PROP_DCF_PORT $PROD_DCF_PORT
+        ;;
+    *)
+        echo "Usage: alexaSetEndpoint <[$ALPHA, $BETA, $GAMMA, $PRE_RELEASE, $PRE_PROD, $PROD]>"
+        ;;
+esac
+

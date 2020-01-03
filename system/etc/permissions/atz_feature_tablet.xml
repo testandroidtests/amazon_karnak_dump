@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <!-- These are the features for Tablets in ATZ-->
+    <feature name="com.amazon.feature.atz_prediction_on_wifi_connect" />
+    <feature name="com.amazon.feature.atz_prediction_on_user_preference" />
+    <feature name="com.amazon.feature.atz_show_tz_change_notification" />
+    <feature name="com.amazon.feature.atz_single_profile_device" />
+</permissions>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (c) 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+    PROPRIETARY/CONFIDENTIAL.  USE IS SUBJECT TO LICENSE TERMS.
+-->
+<permissions>
+    <!-- These are packages that are still granted internet
+         access while the device is in power save mode. -->
+    <allow-in-power-save package="com.amazon.alexa.modeswitch" />
+    <allow-in-power-save package="com.amazon.avod" />
+    <allow-in-power-save package="com.amazon.kindle" />
+    <allow-in-power-save package="com.amazon.music" />
+    <allow-in-power-save package="com.amazon.photos" />
+    <allow-in-power-save package="com.amazon.venezia" />
+    <allow-in-power-save package="com.amazon.firelauncher" />
+</permissions>
